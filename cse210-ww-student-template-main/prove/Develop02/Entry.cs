@@ -1,9 +1,10 @@
 class Entry{
-    public string date;
-    public string promptText;
-    public string entryText;
+    
+    public string date = "";
+    public string promptText = "";
+    public string entryText = "";
 
     public void Display(){
-        Console.WriteLine($"{date} - {entryText}");
+        Console.WriteLine($"{date} - {promptText} - {entryText}");
     }
 }
