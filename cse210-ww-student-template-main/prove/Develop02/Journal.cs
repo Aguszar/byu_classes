@@ -1,14 +1,15 @@
 class Journal
 {
-    public List<Entry> entries;
+    public List<Entry> entries = [];
 
     public void AddEntry( Entry entry){
         entries.Add(entry);
     }
 
     public void DisplayAll(){
-        foreach (Entry e in entries){
-            e.Display();    
+        
+        for (int i = 0; i < entries.Count; i++){
+            entries[i].Display();
         }
     }
 

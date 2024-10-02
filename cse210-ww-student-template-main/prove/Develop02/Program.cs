@@ -1,5 +1,7 @@
 using System;
 using System.Globalization;
+using System.IO; 
+
 
 class Program
 {
@@ -7,9 +9,9 @@ class Program
     {
 
         bool quit = false;
-        Entry entry = new Entry();
+        
         Journal journal = new Journal();
-        PromptGenerator promptGenerator = new PromptGenerator();
+        PromptGenerator promptGen = new PromptGenerator();
 
         while(! quit){
             Console.Clear();
@@ -21,16 +23,16 @@ class Program
             switch (option)
             {
                 case "1":
-                    List<string> prompts = ["Who was the most interesting person I interacted with today?","What was the best part of my day?","How did I see the hand of the Lord in my life today?","What was the strongest emotion I felt today?","If I had one thing I could do over today, what would it be?"];
+                    Entry entry = new Entry();
 
                     DateTime theCurrentTime = DateTime.Now;
                     
-                    entry.date =  theCurrentTime.ToShortDateString();
+                    entry.date = theCurrentTime.ToShortDateString();
                     
                     Random rand = new Random();
-                    entry.promptText = prompts[rand.Next(0, prompts.Count)]; // ramdom
+                    entry.promptText = promptGen.prompts[rand.Next(0, promptGen.prompts.Count)]; // ramdom
                     
-                    Console.WriteLine(entry.promptText);
+                    Console.Write(entry.promptText+"\n>>");
                     entry.entryText = Console.ReadLine();
 
                     journal.AddEntry(entry);
@@ -38,14 +40,37 @@ class Program
                     
                     break;
                 case "2":
-                    
-                    
+
+                
+                    journal.DisplayAll();
+                    Console.WriteLine("Press enter when finished reading.");
                     Console.ReadLine();
                     break;
 
                 case "3":
+                    try{
+                        Console.Write("Enter file name: ");
+                        string filename = Console.ReadLine();
+                        string[] lines = System.IO.File.ReadAllLines(filename);
+
+                        foreach (string line in lines){
+                            Console.WriteLine(line);
+                        }    
+                    }
+                    catch (System.IO.FileNotFoundException){
+                        Console.WriteLine("Error: File does not exist ");
+                    }
+                    Console.WriteLine("Press Enter to continue");
+                    Console.ReadLine();
                     break;
                 case "4":
+                    Console.Write("Enter file name: ");
+                    string fileName = Console.ReadLine();
+
+                    foreach (Entry e in journal.entries){
+                        File.AppendAllText(fileName, $"{e.date} - {e.promptText}: {e.entryText}\n");   
+                    }
+                    
                     break;
                 case "5":
                     quit = true;
@@ -55,12 +80,6 @@ class Program
             }
             
         }
-
-
-        
-
-
-        
 
     }
 }
