@@ -3,6 +3,7 @@ class PromptGenerator{
                         
 
     public string GetRandomPrompt(){
-        return "";
+        Random rand = new Random();
+        return prompts[rand.Next(0, prompts.Count)];
     }
 }

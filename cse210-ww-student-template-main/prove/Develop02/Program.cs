@@ -29,8 +29,7 @@ class Program
                     
                     entry.date = theCurrentTime.ToShortDateString();
                     
-                    Random rand = new Random();
-                    entry.promptText = promptGen.prompts[rand.Next(0, promptGen.prompts.Count)]; // ramdom
+                    entry.promptText = promptGen.GetRandomPrompt(); 
                     
                     Console.Write(entry.promptText+"\n>>");
                     entry.entryText = Console.ReadLine();
