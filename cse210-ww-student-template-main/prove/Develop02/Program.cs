@@ -27,12 +27,12 @@ class Program
 
                     DateTime theCurrentTime = DateTime.Now;
                     
-                    entry.date = theCurrentTime.ToShortDateString();
+                    entry._date = theCurrentTime.ToShortDateString();
                     
-                    entry.promptText = promptGen.GetRandomPrompt(); 
+                    entry._promptText = promptGen.GetRandomPrompt(); 
                     
-                    Console.Write(entry.promptText+"\n>>");
-                    entry.entryText = Console.ReadLine();
+                    Console.Write(entry._promptText+"\n>>");
+                    entry._entryText = Console.ReadLine();
 
                     journal.AddEntry(entry);
                     
@@ -67,7 +67,7 @@ class Program
                     string fileName = Console.ReadLine();
 
                     foreach (Entry e in journal.entries){
-                        File.AppendAllText(fileName, $"{e.date} - {e.promptText}: {e.entryText}\n");   
+                        File.AppendAllText(fileName, $"{e._date} - {e._promptText}: {e._entryText}\n");   
                     }
                     
                     break;
