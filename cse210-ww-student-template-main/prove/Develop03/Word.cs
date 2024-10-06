@@ -1,6 +1,6 @@
 class Word{
-    private string _text;
-    private bool _isHidden;
+    public string _text;
+    public bool _isHidden;
 
     public Word(string text){
         _text = text;
@@ -12,7 +12,7 @@ class Word{
     }
 
     public void Show(){
-        _isHidden = true;
+        _isHidden = true;   
     }
 
     public bool IsHidden(){
