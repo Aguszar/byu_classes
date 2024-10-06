@@ -5,7 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        
+                
         string book = "1 Nephi";
         int chap = 3;
         int verse = 5;
@@ -23,7 +23,11 @@ class Program
                 break;
             }else{
                 Console.Clear();            
-                Console.WriteLine("Scripture Memorizer !!");
+        
+                // added color to the game title
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Scripture Memorizer !!", Console.ForegroundColor);
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(scrip.GetDisplayText());
                 Console.WriteLine("press enter to continue or enter 'quit'");
                 prompt = Console.ReadLine();
@@ -33,11 +37,15 @@ class Program
                 scrip.HideRandomWords(2);
                 if (scrip.IsCompletlyHidden()){
                     Console.Clear();
-                    Console.WriteLine("Scripture Memorizer !!");
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Scripture Memorizer !!", Console.ForegroundColor);
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine(scrip.GetDisplayText());
-                    Console.WriteLine("press enter to continue or enter 'quit'");
-                    prompt = Console.ReadLine();
-                    scrip.showEverything();
+                    prompt = "quit";
+                    // if you want it to go forever, uncomment the code below
+                    //Console.WriteLine("press enter to continue or enter 'quit'");
+                    //prompt = Console.ReadLine();
+                    //scrip.showEverything();
                 }
             }
         }
