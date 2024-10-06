@@ -1,9 +1,9 @@
 class Scripture{
-    public Reference _reference;
-    public List<Word> _words = [];
-    public List<int> _positions = [];
+    private Reference _reference;
+    private List<Word> _words = [];
+    private List<int> _positions = [];
 
-    public bool _IsCompletlyHidden;
+    private bool _IsCompletlyHidden;
     public Scripture(Reference reference, string text){
         _reference = reference;
         _IsCompletlyHidden = false;
@@ -25,19 +25,13 @@ class Scripture{
         
         while (i < numberToHide && _positions.Count > 0 && !_IsCompletlyHidden){
             int pos = rand.Next(0, _positions.Count);
-            Console.WriteLine(pos + " "+ _positions[pos] +" "+ _words[pos]._text);
+            _words[_positions[pos]].Hide();
             _positions.RemoveAt(pos);
-            _words[pos].Hide();
+            
             i++;
         }
-        foreach (int num in _positions)
-        {
-            Console.Write(num+", ");
-        }
-
-        Console.WriteLine();
-
-        if(_positions.Count ==0){
+        
+        if(_positions.Count <= 0){
             _IsCompletlyHidden = true;  
         }
         
@@ -49,7 +43,8 @@ class Scripture{
             if(!w.IsHidden()){
                 t += " "+w.GetDisplayText(); 
             }else{
-                t += " __";
+
+                t += " ___";
             }
         }
         return _reference.GetDisplayText() + " " + t;
@@ -57,5 +52,15 @@ class Scripture{
 
     public bool IsCompletlyHidden(){
         return _IsCompletlyHidden;
+    }
+
+    public void showEverything(){
+        int i = 0;
+        foreach (Word w in _words){
+            w.Show();
+            _positions.Add(i);
+            i++;
+        }
+        _IsCompletlyHidden = false;        
     }
 }
