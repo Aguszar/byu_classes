@@ -17,6 +17,19 @@ class Video{
         _comments.Add(comment);
     }
 
+    public void GetTitle(){
+        Console.WriteLine(_title);
+    }
+
+    
+    public void GetAuthor(){
+        Console.WriteLine(_author);
+    }
+
+    public void GetLength(){
+        Console.WriteLine(_length);
+    }
+
     public int CountComments(){
         return _comments.Count;
     }
@@ -24,7 +37,6 @@ class Video{
         foreach(Comment com in _comments){
             com.GetUsername();
             com.GetText();
-            Console.WriteLine();
         }
     }
 }
