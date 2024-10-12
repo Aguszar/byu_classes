@@ -17,6 +17,9 @@ class Video{
         _comments.Add(comment);
     }
 
+    public int CountComments(){
+        return _comments.Count;
+    }
     public void ShowAllComments(){
         foreach(Comment com in _comments){
             com.GetUsername();
